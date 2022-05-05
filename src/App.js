@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import TaskInput from "./components/TaskInput";
+import TaskList from "./components/TaskList";
+import {useState} from "react";
 
 function App() {
+    const [taskList, setTaskList] = useState([]);
+    const [taskInput, setTaskInput] = useState("");
+
+    const updateTaskList = () => {
+        const newTaskList = [...taskList];  //Copy the original state
+        const task = {
+            id: taskList.length + 1, //THIS IS VERY LAZY! Be careful if the list shrinks, ID's can repeat!
+            desc: taskInput,
+            isDone: false
+        }
+
+        newTaskList.push(task);             //Mutate it
+        setTaskList(newTaskList);           //Store it
+        setTaskInput("");             //Store the other bit
+    }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+       <TaskInput value={taskInput}
+                  onChange={(e) => {setTaskInput(e.currentTarget.value)}}
+                  updateTaskList={updateTaskList}/>
+        <TaskList taskList={taskList}/>
     </div>
   );
 }
