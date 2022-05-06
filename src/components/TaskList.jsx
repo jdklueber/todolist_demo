@@ -1,7 +1,7 @@
 import React from "react";
 import TaskDisplay from "./TaskDisplay";
 
-function TaskList({taskList, updateTaskList, deleteTask}) {
+function TaskList({taskList, updateATask, deleteTask}) {
 
     return (
         <div className={"w-1/2 mx-auto mt-10"}>
@@ -10,7 +10,7 @@ function TaskList({taskList, updateTaskList, deleteTask}) {
                 {taskList.length ?
                     taskList.map(e => <TaskDisplay key={e.id}
                                                    task={e}
-                                                   updateTaskList={updateTaskList}
+                                                   updateATask={updateATask}
                                                    deleteTask={deleteTask}/>)
                     : "No tasks yet!"
                 }

@@ -21,7 +21,7 @@ function App() {
         setNextId(nextId + 1);         //Increment the next ID
     }
 
-    const updateTaskList = (updatedTask) => {
+    const updateATask = (updatedTask) => {
         const newTaskList = [...taskList];                  //Copy it
         for (let i = 0; i < newTaskList.length; i++) {      //Find the task
             if (newTaskList[i].id === updatedTask.id ) {
@@ -45,7 +45,7 @@ function App() {
                   buttonAction={addATask}
                   label={"Add Task"}
        />
-        <TaskList taskList={taskList} updateTaskList={updateTaskList} deleteTask={deleteTask}/>
+        <TaskList taskList={taskList} updateATask={updateATask} deleteTask={deleteTask}/>
     </div>
   );
 }

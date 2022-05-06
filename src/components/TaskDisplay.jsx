@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Button from "./Button";
 import TaskInput from "./TaskInput";
 
-function TaskDisplay({task, updateTaskList, deleteTask}) {
+function TaskDisplay({task, updateATask, deleteTask}) {
     const [newDescription, setNewDescription] = useState("");
     const [editMode, setEditMode] = useState(false);
 
@@ -16,7 +16,7 @@ function TaskDisplay({task, updateTaskList, deleteTask}) {
     const updateTask = () => {
         const newTask = {...task};
         newTask.desc = newDescription;
-        updateTaskList(newTask);
+        updateATask(newTask);
         setNewDescription("");
         setEditMode(false);
     }
@@ -24,7 +24,7 @@ function TaskDisplay({task, updateTaskList, deleteTask}) {
     const markComplete = () => {
         const newTask = {...task};
         newTask.isDone = true;
-        updateTaskList(newTask);
+        updateATask(newTask);
     }
 
     const editButton = <div><Button onClick={editAction} label={"Edit"}/> </div>;
