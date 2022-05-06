@@ -17,25 +17,25 @@ function App() {
 
         newTaskList.push(task);             //Mutate it
         setTaskList(newTaskList);           //Store it
-        setNewTaskDesc("");             //Reset the task inputter
-        setNextId(nextId + 1);        //Increment the next ID
+        setNewTaskDesc("");            //Reset the task inputter
+        setNextId(nextId + 1);         //Increment the next ID
     }
 
     const updateTaskList = (updatedTask) => {
-        const newTaskList = [...taskList];
-        for (let i = 0; i < newTaskList.length; i++) {
+        const newTaskList = [...taskList];                  //Copy it
+        for (let i = 0; i < newTaskList.length; i++) {      //Find the task
             if (newTaskList[i].id === updatedTask.id ) {
-                newTaskList[i] = updatedTask;
-                break;
+                newTaskList[i] = updatedTask;               //Replace with the new one
+                break;                                      //Exit the for loop
             }
         }
 
-        setTaskList(newTaskList);
+        setTaskList(newTaskList);                           //Update the state
     }
 
     const deleteTask = (task) => {
-        const newTaskList = taskList.filter( e => e.id !== task.id);
-        setTaskList(newTaskList);
+        const newTaskList = taskList.filter( e => e.id !== task.id);  //Filter out the deleted task
+        setTaskList(newTaskList);                                     //Update the state
     }
 
   return (
