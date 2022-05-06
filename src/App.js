@@ -5,26 +5,47 @@ import {useState} from "react";
 function App() {
     const [taskList, setTaskList] = useState([]);
     const [taskInput, setTaskInput] = useState("");
+    const [nextId, setNextId] = useState(1);
 
-    const updateTaskList = () => {
+    const addATask = () => {
         const newTaskList = [...taskList];  //Copy the original state
         const task = {
-            id: taskList.length + 1, //THIS IS VERY LAZY! Be careful if the list shrinks, ID's can repeat!
+            id: nextId,
             desc: taskInput,
             isDone: false
         }
 
         newTaskList.push(task);             //Mutate it
         setTaskList(newTaskList);           //Store it
-        setTaskInput("");             //Store the other bit
+        setTaskInput("");             //Reset the task inputter
+        setNextId(nextId + 1);        //Increment the next ID
+    }
+
+    const updateTaskList = (updatedTask) => {
+        const newTaskList = [...taskList];
+        for (let i = 0; i < newTaskList.length; i++) {
+            if (newTaskList[i].id === updatedTask.id ) {
+                newTaskList[i] = updatedTask;
+                break;
+            }
+        }
+
+        setTaskList(newTaskList);
+    }
+
+    const deleteTask = (task) => {
+        const newTaskList = taskList.filter( e => e.id !== task.id);
+        setTaskList(newTaskList);
     }
 
   return (
     <div>
        <TaskInput value={taskInput}
                   onChange={(e) => {setTaskInput(e.currentTarget.value)}}
-                  updateTaskList={updateTaskList}/>
-        <TaskList taskList={taskList}/>
+                  buttonAction={addATask}
+                  label={"Add Task"}
+       />
+        <TaskList taskList={taskList} updateTaskList={updateTaskList} deleteTask={deleteTask}/>
     </div>
   );
 }

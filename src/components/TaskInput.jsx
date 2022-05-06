@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-function TaskInput({value, onChange, updateTaskList}) {
+function TaskInput({value, onChange, buttonAction, label}) {
 
     return (
         <div className={"w-1/2 border-2 mx-auto p-5 mt-20"}>
@@ -9,7 +9,7 @@ function TaskInput({value, onChange, updateTaskList}) {
             <input type={"text"} value={value} onChange={onChange}
                          className={"shadow-sm border-gray-300 border-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"}
             />
-            <Button onClick={updateTaskList} label={"Add Task"}/>
+            <Button onClick={buttonAction} label={label}/>
         </div>
     )
 }
