@@ -4,20 +4,20 @@ import {useState} from "react";
 
 function App() {
     const [taskList, setTaskList] = useState([]);
-    const [taskInput, setTaskInput] = useState("");
+    const [newTaskDesc, setNewTaskDesc] = useState("");
     const [nextId, setNextId] = useState(1);
 
     const addATask = () => {
         const newTaskList = [...taskList];  //Copy the original state
         const task = {
             id: nextId,
-            desc: taskInput,
+            desc: newTaskDesc,
             isDone: false
         }
 
         newTaskList.push(task);             //Mutate it
         setTaskList(newTaskList);           //Store it
-        setTaskInput("");             //Reset the task inputter
+        setNewTaskDesc("");             //Reset the task inputter
         setNextId(nextId + 1);        //Increment the next ID
     }
 
@@ -40,8 +40,8 @@ function App() {
 
   return (
     <div>
-       <TaskInput value={taskInput}
-                  onChange={(e) => {setTaskInput(e.currentTarget.value)}}
+       <TaskInput value={newTaskDesc}
+                  onChange={(e) => {setNewTaskDesc(e.currentTarget.value)}}
                   buttonAction={addATask}
                   label={"Add Task"}
        />
